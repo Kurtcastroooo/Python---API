@@ -1,4 +1,5 @@
 import requests
+import csv
 from requests.api import head
 
 url = 'http://api.coincap.io/v2/assets'
@@ -11,12 +12,15 @@ headers = {
 response = requests.request("GET", url, headers=headers, data={})
 myjson = response.json()
 ourdata = []
-csvheader = {'Symbol', 'Name', 'Price_USD'}
+csvheader = {'Symbol', 'Name', 'price_USD'}
 
 for x in myjson['data']:
-    listing = [x['symbol'],x['name'],x['priceUSD']]
+    listing = [x['symbol'],x['name'],x['priceUsd']]
     ourdata.append(listing)
 
 with open ('crypto.csv','w',encoding = 'UTF8', newline= '') as f:
     writer = csv.writer(f)
+    writer.writerow(csvheader)
+    writer.writerow(ourdata)
 
+print('Completed')
