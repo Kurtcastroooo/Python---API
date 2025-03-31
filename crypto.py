@@ -13,10 +13,7 @@ headers = {
 response = requests.request("GET", url, headers=headers)
 myjson = response.json()
 
-# Debugging step: Check the structure of the response
-print(myjson)  # This will print the entire response
-
-# Step 2: Prepare data for CSV (Assuming 'data' is a list of dictionaries)
+# Step 2: Prepare data for CSV
 ourdata = []
 csvheader = ['Symbol', 'Name', 'price_USD']
 
@@ -32,7 +29,7 @@ else:
     print("Error: 'data' is not a list.")
 
 # Step 3: Save CSV in the repo directory
-repo_dir = r'C:\Users\Kyle\Python---API'  # Path to your repo
+repo_dir = r'Insert Local Repo Path'  # Path to your repo
 file_path = os.path.join(repo_dir, 'crypto.csv')  # Save CSV directly in the repo
 
 with open(file_path, 'w', encoding='UTF8', newline='') as f:
@@ -44,14 +41,13 @@ with open(file_path, 'w', encoding='UTF8', newline='') as f:
 print('CSV file created locally at:', file_path)
 
 # Step 4: Git commands to add, commit, and push to GitHub
-# Change directory to your repo
-os.chdir(repo_dir)
+os.chdir(repo_dir) 
 
 # Add the file to git
 subprocess.run(['git', 'add', file_path])
 
 # Commit the changes
-subprocess.run(['git', 'commit', '-m', '"Add crypto data CSV file"'])
+subprocess.run(['git', 'commit', '-m', 'Add crypto data CSV file'])
 
 # Push the changes to GitHub
 subprocess.run(['git', 'push'])
