@@ -39,17 +39,3 @@ with open(file_path, 'w', encoding='UTF8', newline='') as f:
         writer.writerow(listing)
 
 print('CSV file created locally at:', file_path)
-
-# Step 4: Git commands to add, commit, and push to GitHub
-os.chdir(repo_dir) 
-
-# Add the file to git
-subprocess.run(['git', 'add', file_path])
-
-# Commit the changes
-subprocess.run(['git', 'commit', '-m', 'Add crypto data CSV file'])
-
-# Push the changes to GitHub
-subprocess.run(['git', 'push'])
-
-print('File pushed to GitHub.')
